@@ -12,10 +12,15 @@
 <body>
     <header>
         <div class="topbar">
-            <img src="logo.png" alt="School Logo" class="logo">
-            <nav>
-                <ul>
-                    <li><a href="#home">Mission and Vission</a></li>
+            <a href="/" class="brand">
+                <img src="logo.png" alt="School Logo" class="logo">
+            </a>
+            <button class="nav-toggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="#home">Mission and Vision</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#programs">Programs Offered</a></li>
                     <li><a href="#contact">Contact</a></li>
@@ -25,6 +30,10 @@
     </header>
     <main>
         <section id="hero" class="hero">
+            <video class="hero-video" autoplay muted loop playsinline poster="body-reference-new.png">
+                <source src="hero-video.mp4" type="video/mp4">
+                <!-- Replace 'hero-placeholder.mp4' with your real video file. -->
+            </video>
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1><span class="tolkien">LA VERDAD CHRISTIAN COLLEGE, INC.</span>
@@ -94,8 +103,76 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Em</p>
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="logo.png" alt="School Logo" class="footer-logo">
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Mission and Vision</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#programs">Programs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Student Portal</a></li>
+                        <li><a href="#">Faculty Portal</a></li>
+                        <li><a href="#">Library</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="https://www.facebook.com/lvcc.apalit">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LA VERDAD CHRISTIAN COLLEGE, INC. All rights reserved.</p>
+        </div>
     </footer>
+    <script>
+        // Mobile nav toggle and header scroll state
+        (function(){
+            const btn = document.querySelector('.nav-toggle');
+            const nav = document.querySelector('.nav');
+            const header = document.querySelector('header');
+            const hero = document.getElementById('hero');
+
+            function toggleNav(){
+                if(!btn || !nav) return;
+                const expanded = btn.getAttribute('aria-expanded') === 'true';
+                btn.setAttribute('aria-expanded', String(!expanded));
+                nav.classList.toggle('open');
+            }
+
+            function onScroll(){
+                if(!header) return;
+                const headerHeight = header.offsetHeight || 64;
+                const threshold = hero ? (hero.offsetHeight - headerHeight) : headerHeight;
+                if(window.scrollY > threshold){
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            }
+
+            btn && btn.addEventListener('click', toggleNav);
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', onScroll);
+            document.addEventListener('DOMContentLoaded', onScroll);
+        })();
+    </script>
 </body>
 
 </html>
